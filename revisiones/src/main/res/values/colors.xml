@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#F4AB00</color>
+
+    <color name="gray_primary">#626262</color>
+    <color name="gray_secondary">#343434</color>
+    <color name="ripple">#80bdbdbd</color>
+    <color name="yellow">#F4AB00</color>
+    <color name="card_title_bg">@color/yellow</color>
+    <color name="gray_fifth">#d5d5d5</color>
+</resources>

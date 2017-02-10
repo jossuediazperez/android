@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_fifth"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/gray_primary"
+            android:tag="toolbarConfiguration"
+            app:popupTheme="@style/AppTheme.PopupOverlay"></android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/cambiarLenguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_lenguaje_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/card_title_bg"
+                android:padding="@dimen/padding_card_title"
+                android:singleLine="true"
+                android:tag="idioma"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="@integer/layout_weight_sum_equal">
+
+                <TextView
+                    android:id="@+id/txtLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/layout_weight_equal"
+                    android:padding="@dimen/padding_card_title"
+                    android:singleLine="true"
+                    android:tag="txtLanguage"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/title_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_lenguaje_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="@integer/layout_weight_equal"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_card_title"
+                    android:singleLine="true"
+                    android:tag="cambiar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/action_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/plataformaPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_plataforma_pago_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/card_title_bg"
+                android:padding="@dimen/padding_card_title"
+                android:singleLine="true"
+                android:tag="plataformaPago"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="@integer/layout_weight_sum_equal">
+
+                <TextView
+                    android:id="@+id/tv_plataforma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/layout_weight_equal"
+                    android:padding="@dimen/padding_card_title"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/title_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_plataforma_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/layout_weight_equal"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_card_title"
+                    android:singleLine="true"
+                    android:tag="cambiar"
+                    android:textAllCaps="true"
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/action_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

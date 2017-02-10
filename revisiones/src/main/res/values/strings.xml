@@ -1,0 +1,25 @@
+<resources>
+    //FOR APP NAME
+    <string name="app_name">Revisiones</string>
+
+    //FOR ACTIVITY MAIN
+    <string name="nombre_de_usuario">JUANPEREZ</string>
+    <string name="revisiones">REVISIONES</string>
+    <string name="restantes">RESTANTES</string>
+    <string name="treinta_y_tres">33</string>
+    <string name="otras_notificaciones">AQUÍ SE PUEDE MOSTRAR OTROS DATOS DE NOTIFICACIÓN</string>
+    <string name="actualizar">actualizar</string>
+    <string name="lista_de_revisiones">LISTA DE REVISIONES</string>
+    <string name="perfil_de_usuario">PERFIL DE USUARIO</string>
+    <string name="configuracion">CONFIGURACIÓN</string>
+    <string name="ayuda">AYUDA</string>
+    <string name="autenticacion_ejecutando">Autenticando con el servidor</string>
+    <string name="autenticacion_fallida">Autenticación fallida</string>
+    <string name="autenticacion_satisfactoria">Autenticación exitosa</string>
+    <string name="autenticacion_error">No se pudo conectar al servidor</string>
+
+    <string name="server_default" translatable="false">192.168.42.1</string>
+    <string name="user_default" translatable="false">apprevatsa</string>
+    <string name="pass_default" translatable="false">Gr-2735!j</string>
+
+</resources>

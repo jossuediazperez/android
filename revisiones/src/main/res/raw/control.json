@@ -1,0 +1,22 @@
+{
+  "values": {
+    "CtlIdDispositivo": "",
+    "CtlCodCli": "4300001",
+    "CtlRazon": "Nombre empresa",
+    "CtlRazonEmail": "atsa@at3w.com",
+    "CtlRevisorNombre": "Nombre del revisor",
+    "CtlRevisorEmail": "tsegui@at3w.com",
+    "CtlUsuario": "apprevatsa",
+    "CtlPassword": "Gr-2735!j",
+    "CtlDireccionFtp": "192.168.42.1",
+    "CtlUsuarioFtp": "AppRev001",
+    "CtlPasswordFtp": "Cft-279!Dg3",
+    "CtlPasswordDesbloqueo": "!!Q9c7_Scpr-9r6y5",
+    "CtlPasswordAdmin": "Ar-2934_Fgk1",
+    "CtlBloqueoInmediato": "N",
+    "CtlBloqueoFecha": "00-00-0000",
+    "CtlCreditoRevisiones": 999,
+    "CtlIdioma": "ES",
+    "CtlPais": "ES"
+  }
+}
