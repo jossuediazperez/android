@@ -1,0 +1,161 @@
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
+apply plugin: 'jacoco-android'
+
+
+project.ext {
+
+    if (!project.hasProperty('sonar_url')) {
+        sonar_url = 'https://sonarqube.peya.app'
+    }
+
+    if (!project.hasProperty('sonar_project_key')) {
+        sonar_project_key = "$artifactId:${project.projectDir.name}"
+    }
+
+    if (!project.hasProperty('sonar_project_name')) {
+        sonar_project_name = artifactId
+    }
+
+    if (!project.hasProperty('sonar_project_version')) {
+        sonar_project_version = android.defaultConfig.versionName
+    }
+
+    if (!project.hasProperty('execute_unit_test')) {
+        execute_unit_test = true
+    }
+
+    if (!project.hasProperty('execute_instrumental_test')) {
+        execute_instrumental_test = false
+    }
+
+    if (!project.hasProperty('sonar_project_home')) {
+        sonar_project_home = "$snapshots_repo_url/com/pedidosya/$sonar_project_name/$sonar_project_version"
+    }
+
+    sonar_project_description = ""
+    if (execute_unit_test) {
+        sonar_project_description = "$sonar_project_description Unit test run."
+    } else {
+        sonar_project_description = "$sonar_project_description Unit test not run."
+    }
+    if (execute_instrumental_test) {
+        sonar_project_description = "$sonar_project_description Instrumental test run."
+    } else {
+        sonar_project_description = "$sonar_project_description Instrumental test not run."
+    }
+
+    if (!project.hasProperty('jacoco_filter_exclude')) {
+        jacoco_filter_exclude = ['**/R.class',
+                                 '**/R$*.class',
+                                 '**/BuildConfig.*',
+                                 '**/*Injector*.*',
+                                 '**/*$InjectAdapter*.*',
+                                 '**/*$ViewInjector*.*',
+                                 '**/*$ViewBinder*.*',
+                                 '**/*$MembersInjector*.*',
+                                 '**/Manifest*.*',
+                                 '**/*Test*.*',
+                                 'android/**/*.*']
+    }
+
+    if (!project.hasProperty('sonar_filter_exclude')) {
+        sonar_filter_exclude = [
+                '**/*Activity*.*',
+                '**/*Fragment*.*']
+    }
+
+}
+
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses true
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+
+sonarqube {
+    version = "2.8"
+}
+
+task createTestReports(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+
+    if (execute_unit_test) {
+        dependsOn('test', 'jacocoTestReport', 'testDebugUnitTest')
+    }
+
+    if (execute_instrumental_test) {
+        dependsOn('createDebugCoverageReport')
+    }
+
+    reports {
+        csv.enabled false
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def mainSrc = fileTree(dir: "${project.projectDir}/src/main/java", excludes: jacoco_filter_exclude)
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/dev/debug", excludes: jacoco_filter_exclude)
+    def execution = "${buildDir}/jacoco/testDebugUnitTest.exec"
+
+    getSourceDirectories().setFrom(files([mainSrc]))
+    getClassDirectories().setFrom(files([debugTree]))
+    getExecutionData().setFrom(files(execution))
+}
+
+tasks.sonarqube.dependsOn('clean', 'createTestReports')
+tasks.sonarqube.setGroup('reporting')
+
+sonarqube {
+    properties {
+        property "sonar.host.url", sonar_url
+        property "sonar.login", sonar_login
+        property "sonar.projectName", sonar_project_name
+        property "sonar.projectVersion", sonar_project_version
+        property "sonar.projectDescription", sonar_project_description
+        property "sonar.links.homepage", sonar_project_home
+        property "sonar.projectKey", sonar_project_key
+
+        def sources = fileTree(dir: "${project.projectDir}/src/main/java", excludes: sonar_filter_exclude).files
+        property "sonar.sources", sources
+        property "sonar.exclusions", "robospice/**/*"
+
+        def jacocoReportsJAR = fileTree(dir: "${buildDir}/intermediates", includes: ['**/*.jar']).files
+        property "sonar.java.test.binaries", jacocoReportsJAR
+        property "sonar.java.test.libraries", jacocoReportsJAR
+
+        def jacocoReportsEXEC = fileTree(dir: "${buildDir}/jacoco", includes: ['**/*.exec']).files
+        property "sonar.jacoco.reportPath", jacocoReportsEXEC
+
+        def jacocoReportsEC = fileTree(dir: "${buildDir}/outputs", includes: ['**/*.ec']).files
+        property "sonar.jacoco.itReportPath", jacocoReportsEC
+
+        def jacocoReportsXML = fileTree(dir: "${buildDir}/reports", includes: ['**/*.xml']).files
+        property "sonar.coverage.jacoco.xmlReportPaths", jacocoReportsXML
+    }
+}
+
