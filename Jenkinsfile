@@ -33,5 +33,11 @@ pipeline {
       }
     }
 
+    stage('third') {
+      steps {
+        waitUntil(initialRecurrencePeriod: 12)
+      }
+    }
+
   }
 }
