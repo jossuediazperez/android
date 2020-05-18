@@ -24,5 +24,14 @@ pipeline {
       }
     }
 
+    stage('second') {
+      steps {
+        withGradle() {
+          sh 'echo "11"'
+        }
+
+      }
+    }
+
   }
 }
