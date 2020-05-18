@@ -43,7 +43,6 @@ pipeline {
     }
 
     stage('end') {
-      agent any
       steps {
         echo 'end'
       }
